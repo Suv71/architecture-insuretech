@@ -1,0 +1,42 @@
+type Client {
+    id: ID!
+    name: String!
+    age: Int!
+}
+
+type Document {
+    id: ID!
+    type: String!
+    number: String!
+    issueDate: String!
+    expiryDate: String!
+}
+
+type Relative {
+    id: ID!
+    relationType: String!
+    name: String!
+    age: Int!
+}
+
+type ClientFullInfo {
+    id: ID!
+    name: String!
+    age: Int!
+    documents: [Document!]!
+    relatives: [Relative!]!
+}
+
+type Query {
+    """Возвращает информацию о клиенте по ID."""
+    client(id: ID!): Client
+
+    """Возвращает список документов клиента по ID."""
+    client_documents(id: ID!): [Document!]
+
+    """Возвращает информацию о родственниках клиента по ID."""
+    client_relatives(id: ID!): [Relative!]
+
+    """Возвращает информацию о клиенте по ID, его документы и родственников."""
+    client_full_info(id: ID!): ClientFullInfo
+}
